@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111312" />
+    <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Explore the Obsidian card in an interactive 3D viewer."
@@ -36,19 +36,14 @@
         </div>
 
         <div class="viewer-shell">
-          <div class="viewer-topline">
-            <span>01 / 01</span>
-            <span class="live-status"><span class="status-dot"></span><span id="status-text">Preparing model</span></span>
-          </div>
-
           <div class="viewer-stage">
             <model-viewer
               id="obsidian-model"
               src="./obsidian_web.glb?v=2"
-              alt="The Obsidian card and its components, shown as an interactive 3D model"
-              camera-controls
-              touch-action="pan-y"
-              interaction-prompt="none"
+              alt="The Obsidian card and its components, shown as a rotating 3D model"
+              auto-rotate
+              auto-rotate-delay="0"
+              rotation-per-second="8deg"
               camera-orbit="25deg 72deg 2m"
               min-camera-orbit="auto 8deg 0.8m"
               max-camera-orbit="auto 172deg 4m"
@@ -68,20 +63,6 @@
                 <span class="progress-fill"></span>
               </div>
             </model-viewer>
-            <div class="stage-index" aria-hidden="true">01</div>
-            <div class="stage-hint"><span class="drag-icon" aria-hidden="true">↗</span> DRAG TO EXPLORE</div>
-          </div>
-
-          <div class="viewer-controls" aria-label="Model controls">
-            <button class="control-button" id="rotate-toggle" type="button" aria-pressed="false">
-              <span class="control-icon" id="rotate-icon" aria-hidden="true">▶</span>
-              <span id="rotate-label">Auto rotate</span>
-            </button>
-            <button class="control-button" id="reset-view" type="button">
-              <span class="reset-icon" aria-hidden="true">↺</span>
-              <span>Reset view</span>
-            </button>
-            <span class="gesture-note">Drag to orbit · scroll to zoom</span>
           </div>
         </div>
       </section>
@@ -92,8 +73,7 @@
           <h2 id="details-title">Made to be explored.</h2>
         </div>
         <p class="details-copy">
-          The Obsidian assembly is presented as a lightweight, high-detail 3D scene.
-          Orbit the model, inspect its form, and zoom into the finish.
+          The Obsidian assembly is presented as a high-detail 3D scene, composed for the web.
         </p>
         <div class="spec-grid" aria-label="Model specifications">
           <div class="spec"><span class="spec-label">FORMAT</span><strong>GLB / glTF 2.0</strong></div>
