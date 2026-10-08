@@ -10,12 +10,12 @@
     />
     <title>OBSIDIAN — Interactive object study</title>
     <link rel="preconnect" href="https://ajax.googleapis.com" />
-    <link rel="stylesheet" href="./styles.css?v=3" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"
     ></script>
-    <script src="./app.js?v=3" defer></script>
+    <script src="./app.js?v=4" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -44,9 +44,8 @@
               auto-rotate
               auto-rotate-delay="0"
               rotation-per-second="8deg"
-              camera-orbit="25deg 72deg 2m"
-              min-camera-orbit="auto 8deg 0.8m"
-              max-camera-orbit="auto 172deg 4m"
+              camera-orbit="25deg 72deg 110%"
+              interpolation-decay="220"
               camera-target="auto auto auto"
               field-of-view="28deg"
               environment-image="neutral"
