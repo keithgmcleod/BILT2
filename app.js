@@ -8,16 +8,14 @@ const home = { theta: 0, phi: 90, radius: "110%" };
 let pointer = { x: 0, y: 0 };
 let frame = 0;
 
-if (reducedMotion.matches) viewer.removeAttribute("auto-rotate");
-
 function updateCamera() {
   frame = 0;
-  const theta = home.theta + pointer.x * 7;
-  const phi = Math.max(82, Math.min(98, home.phi + pointer.y * 8));
+  const theta = home.theta + pointer.x * 10;
+  const phi = Math.max(84, Math.min(96, home.phi + pointer.y * 6));
   viewer.cameraOrbit = `${theta}deg ${phi}deg ${home.radius}`;
 }
 
-function moveWithMouse(event) {
+function moveWithPointer(event) {
   if (reducedMotion.matches) return;
   const bounds = stage.getBoundingClientRect();
   pointer = {
@@ -32,10 +30,8 @@ function resetCamera() {
   if (!reducedMotion.matches && !frame) frame = window.requestAnimationFrame(updateCamera);
 }
 
-window.addEventListener("mousemove", moveWithMouse, { passive: true });
-window.addEventListener("mouseout", (event) => {
-  if (!event.relatedTarget) resetCamera();
-});
+stage.addEventListener("pointermove", moveWithPointer, { passive: true });
+stage.addEventListener("pointerleave", resetCamera, { passive: true });
 
 viewer.addEventListener("progress", (event) => {
   progressFill.style.width = `${Math.round(event.detail.totalProgress * 100)}%`;
