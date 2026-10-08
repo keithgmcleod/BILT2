@@ -10,8 +10,8 @@ let frame = 0;
 
 function updateCamera() {
   frame = 0;
-  const theta = home.theta + pointer.x * 10;
-  const phi = Math.max(84, Math.min(96, home.phi + pointer.y * 6));
+  const theta = home.theta + pointer.x * 16;
+  const phi = Math.max(80, Math.min(100, home.phi + pointer.y * 10));
   viewer.cameraOrbit = `${theta}deg ${phi}deg ${home.radius}`;
 }
 
