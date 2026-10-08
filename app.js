@@ -4,7 +4,7 @@ const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-const home = { theta: 0, phi: 12, radius: "110%" };
+const home = { theta: 0, phi: 90, radius: "110%" };
 let pointer = { x: 0, y: 0 };
 let frame = 0;
 
@@ -13,7 +13,7 @@ if (reducedMotion.matches) viewer.removeAttribute("auto-rotate");
 function updateCamera() {
   frame = 0;
   const theta = home.theta + pointer.x * 7;
-  const phi = Math.max(5, Math.min(20, home.phi + pointer.y * 6));
+  const phi = Math.max(82, Math.min(98, home.phi + pointer.y * 8));
   viewer.cameraOrbit = `${theta}deg ${phi}deg ${home.radius}`;
 }
 
