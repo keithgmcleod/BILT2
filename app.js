@@ -32,7 +32,7 @@ resetButton.addEventListener("click", () => {
 viewer.addEventListener("progress", (event) => {
   const progress = Math.round(event.detail.totalProgress * 100);
   progressFill.style.width = `${progress}%`;
-  statusText.textContent = progress < 100 ? `Loading model ${progress}%` : "Finishing setup";
+  statusText.textContent = progress < 100 ? `Loading model ${progress}%` : "Ready to explore";
 });
 
 viewer.addEventListener("load", () => {
