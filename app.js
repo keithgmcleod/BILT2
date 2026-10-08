@@ -4,7 +4,7 @@ const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-const home = { theta: 25, phi: 72, radius: "110%" };
+const home = { theta: 0, phi: 12, radius: "110%" };
 let pointer = { x: 0, y: 0 };
 let frame = 0;
 
@@ -12,24 +12,29 @@ if (reducedMotion.matches) viewer.removeAttribute("auto-rotate");
 
 function updateCamera() {
   frame = 0;
-  const theta = home.theta + pointer.x * 3.5;
-  const phi = home.phi + pointer.y * 2.5;
+  const theta = home.theta + pointer.x * 7;
+  const phi = Math.max(5, Math.min(20, home.phi + pointer.y * 6));
   viewer.cameraOrbit = `${theta}deg ${phi}deg ${home.radius}`;
 }
 
-stage.addEventListener("pointermove", (event) => {
-  if (event.pointerType !== "mouse" || reducedMotion.matches) return;
+function moveWithMouse(event) {
+  if (reducedMotion.matches) return;
   const bounds = stage.getBoundingClientRect();
   pointer = {
     x: Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2)),
     y: Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - 0.5) * 2)),
   };
   if (!frame) frame = window.requestAnimationFrame(updateCamera);
-});
+}
 
-stage.addEventListener("pointerleave", () => {
+function resetCamera() {
   pointer = { x: 0, y: 0 };
   if (!reducedMotion.matches && !frame) frame = window.requestAnimationFrame(updateCamera);
+}
+
+window.addEventListener("mousemove", moveWithMouse, { passive: true });
+window.addEventListener("mouseout", (event) => {
+  if (!event.relatedTarget) resetCamera();
 });
 
 viewer.addEventListener("progress", (event) => {
@@ -39,7 +44,7 @@ viewer.addEventListener("progress", (event) => {
 viewer.addEventListener("load", () => {
   const center = viewer.getBoundingBoxCenter();
   viewer.cameraTarget = `${center.x.toFixed(4)}m ${center.y.toFixed(4)}m ${center.z.toFixed(4)}m`;
-  viewer.cameraOrbit = `${home.theta}deg ${home.phi}deg ${home.radius}`;
+  updateCamera();
   progressFill.style.width = "100%";
   window.setTimeout(() => loadState?.setAttribute("hidden", ""), 350);
 });
