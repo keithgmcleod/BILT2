@@ -1,48 +1,55 @@
 const viewer = document.querySelector("#obsidian-model");
-const statusText = document.querySelector("#status-text");
-const rotateButton = document.querySelector("#rotate-toggle");
-const rotateLabel = document.querySelector("#rotate-label");
-const rotateIcon = document.querySelector("#rotate-icon");
-const resetButton = document.querySelector("#reset-view");
+const stage = document.querySelector(".viewer-stage");
 const progressFill = document.querySelector(".progress-fill");
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const loadState = document.querySelector(".load-state");
 
-function setRotation(enabled) {
-  if (enabled) {
-    viewer.setAttribute("auto-rotate", "");
-  } else {
-    viewer.removeAttribute("auto-rotate");
-  }
-  rotateButton.setAttribute("aria-pressed", String(enabled));
-  rotateLabel.textContent = enabled ? "Pause rotation" : "Auto rotate";
-  rotateIcon.textContent = enabled ? "Ⅱ" : "▶";
+const home = { theta: 0, phi: 90, radius: "110%" };
+let pointer = { x: 0, y: 0 };
+
+function updateCamera() {
+  const theta = home.theta + pointer.x * 16;
+  const phi = Math.max(80, Math.min(100, home.phi + pointer.y * 10));
+  viewer.setAttribute("camera-orbit", `${theta}deg ${phi}deg ${home.radius}`);
 }
 
-setRotation(!reducedMotion.matches);
+function moveWithPointer(event) {
+  const bounds = stage.getBoundingClientRect();
+  const inside = event.clientX >= bounds.left && event.clientX <= bounds.right
+    && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+  if (!inside) {
+    resetCamera();
+    return;
+  }
 
-rotateButton.addEventListener("click", () => {
-  setRotation(rotateButton.getAttribute("aria-pressed") !== "true");
-});
+  pointer = {
+    x: Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2)),
+    y: Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - 0.5) * 2)),
+  };
+  updateCamera();
+}
 
-resetButton.addEventListener("click", () => {
-  viewer.cameraOrbit = "25deg 72deg 2m";
-  viewer.cameraTarget = "auto auto auto";
-});
+function resetCamera() {
+  if (pointer.x === 0 && pointer.y === 0) return;
+  pointer = { x: 0, y: 0 };
+  updateCamera();
+}
+
+window.addEventListener("pointermove", moveWithPointer, { passive: true, capture: true });
+stage.addEventListener("pointerleave", resetCamera, { passive: true });
 
 viewer.addEventListener("progress", (event) => {
-  const progress = Math.round(event.detail.totalProgress * 100);
-  progressFill.style.width = `${progress}%`;
-  statusText.textContent = progress < 100 ? `Loading model ${progress}%` : "Finishing setup";
+  progressFill.style.width = `${Math.round(event.detail.totalProgress * 100)}%`;
 });
 
 viewer.addEventListener("load", () => {
+  const center = viewer.getBoundingBoxCenter();
+  viewer.setAttribute("camera-target", `${center.x.toFixed(4)}m ${center.y.toFixed(4)}m ${center.z.toFixed(4)}m`);
+  updateCamera();
   progressFill.style.width = "100%";
-  statusText.textContent = "Ready to explore";
-  window.setTimeout(() => {
-    document.querySelector(".load-state")?.setAttribute("hidden", "");
-  }, 350);
+  window.setTimeout(() => loadState?.setAttribute("hidden", ""), 350);
 });
 
 viewer.addEventListener("error", () => {
-  statusText.textContent = "Model could not be loaded";
+  const label = loadState?.querySelector("span:last-child");
+  if (label) label.textContent = "Model could not be loaded";
 });
