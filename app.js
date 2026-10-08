@@ -7,8 +7,8 @@ const home = { theta: 0, phi: 90, radius: "110%" };
 let pointer = { x: 0, y: 0 };
 
 function updateCamera() {
-  const theta = home.theta + pointer.x * 16;
-  const phi = Math.max(80, Math.min(100, home.phi + pointer.y * 10));
+  const theta = home.theta + pointer.x * 26;
+  const phi = Math.max(70, Math.min(110, home.phi + pointer.y * 20));
   viewer.setAttribute("camera-orbit", `${theta}deg ${phi}deg ${home.radius}`);
 }
 
