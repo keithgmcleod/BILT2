@@ -3,19 +3,18 @@ const frontCard = document.querySelector("#front-card");
 const stage = document.querySelector(".viewer-stage");
 const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const homePitch = -15;
 const homeYaw = -15;
 const frontTilt = { yaw: 15, pitch: 15 };
 const cameraTarget = "0.0960m -0.0629m -0.0104m";
 let pointer = { x: 0, y: 0 };
-let sceneReady = false;
+let modelReady = false;
 let frame = 0;
 
 function updateCardTilt() {
   frame = 0;
-  if (!sceneReady || reducedMotion.matches) return;
+  if (!modelReady) return;
 
   const frontYaw = homeYaw - pointer.x * frontTilt.yaw;
   const frontPitch = homePitch - pointer.y * frontTilt.pitch;
@@ -27,9 +26,13 @@ function queueCardTilt() {
 }
 
 function moveWithPointer(event) {
-  if (event.pointerType === "touch" || reducedMotion.matches) return;
   const bounds = stage.getBoundingClientRect();
-  if (!bounds.width || !bounds.height) return;
+  const inside = event.clientX >= bounds.left && event.clientX <= bounds.right
+    && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+  if (!inside) {
+    resetCards();
+    return;
+  }
 
   pointer = {
     x: Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2)),
@@ -44,21 +47,18 @@ function resetCards() {
   queueCardTilt();
 }
 
-stage.addEventListener("pointermove", moveWithPointer, { passive: true });
+window.addEventListener("pointermove", moveWithPointer, { passive: true, capture: true });
 stage.addEventListener("pointerleave", resetCards, { passive: true });
 window.addEventListener("blur", resetCards);
 
 viewer.addEventListener("progress", (event) => {
-  const progress = event.detail.totalProgress;
-  progressFill.style.width = Math.round(progress * 100) + "%";
-  if (progress >= 1 && !sceneReady) {
-    sceneReady = true;
-    updateCardTilt();
-  }
+  progressFill.style.width = Math.round(event.detail.totalProgress * 100) + "%";
 });
 
 viewer.addEventListener("load", () => {
+  modelReady = true;
   viewer.setAttribute("camera-target", cameraTarget);
+  updateCardTilt();
   progressFill.style.width = "100%";
   window.setTimeout(() => loadState?.setAttribute("hidden", ""), 350);
 });
