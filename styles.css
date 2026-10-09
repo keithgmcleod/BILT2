@@ -74,21 +74,6 @@ h1 { margin: 30px 0 22px -5px; font-size: clamp(52px, 6.5vw, 104px); line-height
   background: #000;
 }
 
-.viewer-stage::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  left: 50%;
-  top: 52%;
-  width: min(82%, 760px);
-  aspect-ratio: 1.58;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(236, 243, 255, .16) 0%, rgba(190, 211, 255, .14) 34%, rgba(145, 175, 230, .08) 55%, rgba(110, 145, 210, 0) 76%);
-  filter: blur(28px);
-  pointer-events: none;
-}
-
 model-viewer {
   display: block;
   width: 100%;
@@ -97,7 +82,6 @@ model-viewer {
   position: relative;
   z-index: 1;
   background: transparent;
-  filter: drop-shadow(0 0 11px rgba(230, 240, 255, .48)) drop-shadow(0 0 30px rgba(146, 183, 255, .28));
   --poster-color: #000;
   --progress-bar-color: #fff;
   --progress-mask: #000;
