@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://ajax.googleapis.com" />
     <link rel="stylesheet" href="./styles.css?v=6" />
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
-    <script src="./app.js?v=22" defer></script>
+    <script src="./app.js?v=23" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -20,6 +20,7 @@
       <a class="top-link" href="#details">Model details <span aria-hidden="true">↘</span></a>
     </header>
 
+
     <main id="top">
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
@@ -29,56 +30,9 @@
           <a class="text-link" href="#details">Explore the details <span aria-hidden="true">↓</span></a>
         </div>
 
+
         <div class="viewer-shell">
           <div class="viewer-stage">
             <model-viewer
               id="obsidian-model"
               src="./obsidian_front.gltf?v=1"
-              alt="Two Obsidian cards, with the front and reverse sides visible in a centered 3D view"
-              camera-orbit="0deg 82deg 110%"
-              orientation="0deg -15deg -15deg"
-              interpolation-decay="60"
-              camera-target="0.0960m -0.0629m -0.0104m"
-              field-of-view="28deg"
-              environment-image="./HDR_Light_Studio_Free_HDRI_Design_07_down30_left84.hdr"
-              exposure="1.05"
-              shadow-intensity="1.1"
-              tone-mapping="aces"
-              loading="eager"
-            >
-    
-              <div class="load-state" slot="poster">
-                <span class="loader-ring" aria-hidden="true"></span>
-                <span>Loading the model</span>
-              </div>
-              <div class="progress-track" slot="progress-bar" aria-hidden="true">
-                <span class="progress-fill"></span>
-              </div>
-            </model-viewer>
-          </div>
-        </div>
-      </section>
-
-      <section class="details" id="details" aria-labelledby="details-title">
-        <div class="details-heading">
-          <p class="eyebrow">BUILT FOR THE WEB</p>
-          <h2 id="details-title">Made to be explored.</h2>
-        </div>
-        <p class="details-copy">
-          The Obsidian assembly is presented as a high-detail 3D scene, composed for the web.
-        </p>
-        <div class="spec-grid" aria-label="Model specifications">
-          <div class="spec"><span class="spec-label">FORMAT</span><strong>glTF 2.0</strong></div>
-          <div class="spec"><span class="spec-label">SCENE PARTS</span><strong>12 objects</strong></div>
-          <div class="spec"><span class="spec-label">GEOMETRY</span><strong>1,944,728 triangles</strong></div>
-          <div class="spec"><span class="spec-label">DOWNLOAD</span><strong>23.4 MB</strong></div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <span>OBSIDIAN / 3D OBJECT STUDY</span>
-      <a href="#top">Back to top ↑</a>
-    </footer>
-  </body>
-</html>
