@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://ajax.googleapis.com" />
     <link rel="stylesheet" href="./styles.css?v=6" />
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
-    <script src="./app.js?v=20" defer></script>
+    <script src="./app.js?v=21" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -33,7 +33,7 @@
           <div class="viewer-stage">
             <model-viewer
               id="obsidian-model"
-              src="./obsidian_back.gltf?v=1"
+              src="./obsidian_front.gltf?v=1"
               alt="Two Obsidian cards, with the front and reverse sides visible in a centered 3D view"
               camera-orbit="0deg 82deg 110%"
               orientation="0deg -15deg -15deg"
@@ -46,11 +46,7 @@
               tone-mapping="aces"
               loading="eager"
             >
-              <extra-model
-                id="front-card"
-                src="./obsidian_front.gltf?v=1"
-                orientation="0deg -15deg -15deg"
-              ></extra-model>
+    
               <div class="load-state" slot="poster">
                 <span class="loader-ring" aria-hidden="true"></span>
                 <span>Loading the model</span>
