@@ -6,18 +6,30 @@ const loadState = document.querySelector(".load-state");
 const frontTilt = { yaw: 15, pitch: 15 };
 const baseOrientation = { roll: 0, pitch: -15, yaw: -15 };
 let pointer = { x: 0, y: 0 };
+let currentPointer = { x: 0, y: 0 };
 let frame = 0;
 
 function updateCardTilt() {
-  frame = 0;
-  const yaw = -pointer.x * frontTilt.yaw;
-  const pitch = -pointer.y * frontTilt.pitch;
+  currentPointer.x += (pointer.x - currentPointer.x) * 0.1;
+  currentPointer.y += (pointer.y - currentPointer.y) * 0.1;
+
+  const settled = Math.abs(pointer.x - currentPointer.x) < 0.001
+    && Math.abs(pointer.y - currentPointer.y) < 0.001;
+  if (settled) {
+    currentPointer = { ...pointer };
+  }
+
+  const yaw = -currentPointer.x * frontTilt.yaw;
+  const pitch = -currentPointer.y * frontTilt.pitch;
   const orientation = [
     baseOrientation.roll,
     baseOrientation.pitch + pitch,
     baseOrientation.yaw + yaw,
   ].map((angle) => angle + "deg").join(" ");
   viewer.orientation = orientation;
+
+  frame = 0;
+  if (!settled) frame = window.requestAnimationFrame(updateCardTilt);
 }
 
 function queueCardTilt() {
