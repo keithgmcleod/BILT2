@@ -8,12 +8,10 @@ const homeYaw = -15;
 const frontTilt = { yaw: 15, pitch: 15 };
 const cameraTarget = "0.0960m -0.0629m -0.0104m";
 let pointer = { x: 0, y: 0 };
-let modelReady = false;
 let frame = 0;
 
 function updateCardTilt() {
   frame = 0;
-  if (!modelReady) return;
 
   const frontYaw = homeYaw - pointer.x * frontTilt.yaw;
   const frontPitch = homePitch - pointer.y * frontTilt.pitch;
