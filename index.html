@@ -31,7 +31,7 @@
           <div class="viewer-stage">
             <model-viewer
               id="obsidian-model"
-              src="./obsidian_front.gltf?v=spotlight-aimed-front"
+              src="./obsidian_front.gltf?v=spotlight-overlay"
               alt="Obsidian card in a centered 3D view"
               camera-orbit="0deg 82deg 110%"
               orientation="0deg -15deg -15deg"
@@ -51,6 +51,7 @@
               <div class="progress-track" slot="progress-bar" aria-hidden="true">
                 <span class="progress-fill"></span>
               </div>
+              <div slot="hotspot-lower-left-spotlight" class="card-spotlight" data-position="-0.45m -0.29m -0.004m" data-normal="0 0 1" aria-hidden="true"></div>
             </model-viewer>
           </div>
         </div>
