@@ -1,5 +1,4 @@
 const viewer = document.querySelector("#obsidian-model");
-const frontCard = document.querySelector("#front-card");
 const stage = document.querySelector(".viewer-stage");
 const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
@@ -18,7 +17,7 @@ function updateCardTilt() {
 
   const frontYaw = homeYaw - pointer.x * frontTilt.yaw;
   const frontPitch = homePitch - pointer.y * frontTilt.pitch;
-  frontCard.setAttribute("orientation", "0deg " + frontPitch + "deg " + frontYaw + "deg");
+  viewer.setAttribute("orientation", "0deg " + frontPitch + "deg " + frontYaw + "deg");
 }
 
 function queueCardTilt() {
