@@ -4,17 +4,20 @@ const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
 
 const frontTilt = { yaw: 15, pitch: 15 };
+const baseOrientation = { roll: 0, pitch: -15, yaw: -15 };
 let pointer = { x: 0, y: 0 };
 let frame = 0;
-
-viewer.style.transformOrigin = "center center";
-viewer.style.transition = "transform 100ms ease-out";
 
 function updateCardTilt() {
   frame = 0;
   const yaw = -pointer.x * frontTilt.yaw;
   const pitch = -pointer.y * frontTilt.pitch;
-  viewer.style.transform = "perspective(1200px) rotateX(" + pitch + "deg) rotateY(" + yaw + "deg)";
+  const orientation = [
+    baseOrientation.roll,
+    baseOrientation.pitch + pitch,
+    baseOrientation.yaw + yaw,
+  ].map((angle) => angle + "deg").join(" ");
+  viewer.setAttribute("orientation", orientation);
 }
 
 function queueCardTilt() {
