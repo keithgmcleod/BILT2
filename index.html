@@ -4,18 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Explore the Obsidian card in an interactive 3D viewer."
-    />
+    <meta name="description" content="Explore the Obsidian card in an interactive 3D viewer." />
     <title>OBSIDIAN — Interactive object study</title>
     <link rel="preconnect" href="https://ajax.googleapis.com" />
     <link rel="stylesheet" href="./styles.css?v=6" />
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"
-    ></script>
-    <script src="./app.js?v=18" defer></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
+    <script src="./app.js?v=19" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -39,12 +33,12 @@
           <div class="viewer-stage">
             <model-viewer
               id="obsidian-model"
-              src="./obsidian_front.gltf?v=1"
+              src="./obsidian_back.gltf?v=1"
               alt="Two Obsidian cards, with the front and reverse sides visible in a centered 3D view"
               camera-orbit="0deg 82deg 110%"
               orientation="0deg -15deg -15deg"
               interpolation-decay="60"
-              camera-target="auto auto auto"
+              camera-target="0.0960m -0.0629m -0.0104m"
               field-of-view="28deg"
               environment-image="./HDR_Light_Studio_Free_HDRI_Design_07_down30_left84.hdr"
               exposure="1.05"
@@ -53,8 +47,8 @@
               loading="eager"
             >
               <extra-model
-                id="rear-card"
-                src="./obsidian_back.gltf?v=1"
+                id="front-card"
+                src="./obsidian_front.gltf?v=1"
                 orientation="0deg -15deg -15deg"
               ></extra-model>
               <div class="load-state" slot="poster">
