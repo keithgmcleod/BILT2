@@ -3,19 +3,18 @@ const stage = document.querySelector(".viewer-stage");
 const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
 
-const homePitch = -15;
-const homeYaw = -15;
 const frontTilt = { yaw: 15, pitch: 15 };
-const cameraTarget = "0.0960m -0.0629m -0.0104m";
 let pointer = { x: 0, y: 0 };
 let frame = 0;
 
+viewer.style.transformOrigin = "center center";
+viewer.style.transition = "transform 100ms ease-out";
+
 function updateCardTilt() {
   frame = 0;
-
-  const frontYaw = homeYaw - pointer.x * frontTilt.yaw;
-  const frontPitch = homePitch - pointer.y * frontTilt.pitch;
-  viewer.setAttribute("orientation", "0deg " + frontPitch + "deg " + frontYaw + "deg");
+  const yaw = -pointer.x * frontTilt.yaw;
+  const pitch = -pointer.y * frontTilt.pitch;
+  viewer.style.transform = "perspective(1200px) rotateX(" + pitch + "deg) rotateY(" + yaw + "deg)";
 }
 
 function queueCardTilt() {
@@ -53,8 +52,6 @@ viewer.addEventListener("progress", (event) => {
 });
 
 viewer.addEventListener("load", () => {
-  modelReady = true;
-  viewer.setAttribute("camera-target", cameraTarget);
   updateCardTilt();
   progressFill.style.width = "100%";
   window.setTimeout(() => loadState?.setAttribute("hidden", ""), 350);
