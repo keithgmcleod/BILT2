@@ -97,6 +97,7 @@ model-viewer {
   position: relative;
   z-index: 1;
   background: transparent;
+  filter: drop-shadow(0 0 11px rgba(230, 240, 255, .48)) drop-shadow(0 0 30px rgba(146, 183, 255, .28));
   --poster-color: #000;
   --progress-bar-color: #fff;
   --progress-mask: #000;
