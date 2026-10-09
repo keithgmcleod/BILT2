@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Generate the website's -35 degree HDR environment from its down-tilted source."""
+"""Generate the website's -60 degree HDR environment from its down-tilted source."""
 
 from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "HDR_Light_Studio_Free_HDRI_Design_07_down30.hdr"
-OUTPUT = ROOT / "HDR_Light_Studio_Free_HDRI_Design_07_down30_left35.hdr"
-ANGLE_DEGREES = -35
+OUTPUT = ROOT / "HDR_Light_Studio_Free_HDRI_Design_07_down30_left60.hdr"
+ANGLE_DEGREES = -60
 
 
 def read_header(data):
