@@ -17,7 +17,7 @@ function updateCardTilt() {
     baseOrientation.pitch + pitch,
     baseOrientation.yaw + yaw,
   ].map((angle) => angle + "deg").join(" ");
-  viewer.setAttribute("orientation", orientation);
+  viewer.orientation = orientation;
 }
 
 function queueCardTilt() {
