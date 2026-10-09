@@ -15,7 +15,7 @@
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"
     ></script>
-    <script src="./app.js?v=12" defer></script>
+    <script src="./app.js?v=13" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -42,7 +42,7 @@
               src="./obsidian_front.gltf?v=1"
               alt="Two Obsidian cards, with the front and reverse sides visible in a centered 3D view"
               camera-orbit="0deg 90deg 110%"
-              orientation="0deg -15deg 0deg"
+              orientation="0deg -15deg -15deg"
               interpolation-decay="60"
               camera-target="auto auto auto"
               field-of-view="28deg"
@@ -55,7 +55,7 @@
               <extra-model
                 id="rear-card"
                 src="./obsidian_back.gltf?v=1"
-                orientation="0deg -15deg 0deg"
+                orientation="0deg -15deg -15deg"
               ></extra-model>
               <div class="load-state" slot="poster">
                 <span class="loader-ring" aria-hidden="true"></span>

@@ -5,14 +5,16 @@ const loadState = document.querySelector(".load-state");
 
 const rearCard = viewer.querySelector("#rear-card");
 const homePitch = -15;
+const homeYaw = -15;
 const frontTilt = { yaw: 26, pitch: 20 };
+const rearTiltFactor = 0.25;
 let pointer = { x: 0, y: 0 };
 
 function updateCardTilt() {
-  const frontYaw = -pointer.x * frontTilt.yaw;
+  const frontYaw = homeYaw - pointer.x * frontTilt.yaw;
   const frontPitch = homePitch - pointer.y * frontTilt.pitch;
-  const rearYaw = frontYaw * 0.5;
-  const rearPitch = homePitch + (frontPitch - homePitch) * 0.5;
+  const rearYaw = homeYaw + (frontYaw - homeYaw) * rearTiltFactor;
+  const rearPitch = homePitch + (frontPitch - homePitch) * rearTiltFactor;
 
   viewer.setAttribute("orientation", `0deg ${frontPitch}deg ${frontYaw}deg`);
   rearCard?.setAttribute("orientation", `0deg ${rearPitch}deg ${rearYaw}deg`);
