@@ -15,7 +15,7 @@
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"
     ></script>
-    <script src="./app.js?v=15" defer></script>
+    <script src="./app.js?v=16" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -47,7 +47,7 @@
               camera-target="auto auto auto"
               field-of-view="28deg"
               environment-image="./HDR_Light_Studio_Free_HDRI_Design_07_down30.hdr"
-              skybox-rotation="84deg"
+              skybox-rotation="-84deg"
               exposure="1.05"
               shadow-intensity="1.1"
               tone-mapping="aces"
@@ -61,7 +61,6 @@
               <extra-model
                 id="reflective-floor"
                 src="./obsidian_floor.glb?v=1"
-                offset="0m -0.43m 0m"
               ></extra-model>
               <div class="load-state" slot="poster">
                 <span class="loader-ring" aria-hidden="true"></span>
