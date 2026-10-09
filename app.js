@@ -6,7 +6,7 @@ const loadState = document.querySelector(".load-state");
 const rearCard = viewer.querySelector("#rear-card");
 const homePitch = -15;
 const homeYaw = -15;
-const frontTilt = { yaw: 26, pitch: 20 };
+const frontTilt = { yaw: 13, pitch: 10 };
 const rearTiltFactor = 0.25;
 let pointer = { x: 0, y: 0 };
 
