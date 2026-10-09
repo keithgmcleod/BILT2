@@ -15,7 +15,7 @@
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"
     ></script>
-    <script src="./app.js?v=14" defer></script>
+    <script src="./app.js?v=15" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -41,13 +41,13 @@
               id="obsidian-model"
               src="./obsidian_front.gltf?v=1"
               alt="Two Obsidian cards, with the front and reverse sides visible in a centered 3D view"
-              camera-orbit="0deg 90deg 110%"
+              camera-orbit="0deg 82deg 110%"
               orientation="0deg -15deg -15deg"
               interpolation-decay="60"
               camera-target="auto auto auto"
               field-of-view="28deg"
               environment-image="./HDR_Light_Studio_Free_HDRI_Design_07_down30.hdr"
-              skybox-rotation="54deg"
+              skybox-rotation="84deg"
               exposure="1.05"
               shadow-intensity="1.1"
               tone-mapping="aces"
@@ -57,6 +57,11 @@
                 id="rear-card"
                 src="./obsidian_back.gltf?v=1"
                 orientation="0deg -15deg -15deg"
+              ></extra-model>
+              <extra-model
+                id="reflective-floor"
+                src="./obsidian_floor.glb?v=1"
+                offset="0m -0.43m 0m"
               ></extra-model>
               <div class="load-state" slot="poster">
                 <span class="loader-ring" aria-hidden="true"></span>
@@ -80,8 +85,8 @@
         </p>
         <div class="spec-grid" aria-label="Model specifications">
           <div class="spec"><span class="spec-label">FORMAT</span><strong>glTF 2.0</strong></div>
-          <div class="spec"><span class="spec-label">SCENE PARTS</span><strong>12 objects</strong></div>
-          <div class="spec"><span class="spec-label">GEOMETRY</span><strong>1,944,728 triangles</strong></div>
+          <div class="spec"><span class="spec-label">SCENE PARTS</span><strong>13 objects</strong></div>
+          <div class="spec"><span class="spec-label">GEOMETRY</span><strong>1,944,730 triangles</strong></div>
           <div class="spec"><span class="spec-label">DOWNLOAD</span><strong>23.4 MB</strong></div>
         </div>
       </section>
