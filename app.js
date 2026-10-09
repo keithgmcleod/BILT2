@@ -3,13 +3,19 @@ const stage = document.querySelector(".viewer-stage");
 const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
 
-const home = { theta: 0, phi: 90, radius: "110%" };
+const rearCard = viewer.querySelector("#rear-card");
+const homePitch = -15;
+const frontTilt = { yaw: 26, pitch: 20 };
 let pointer = { x: 0, y: 0 };
 
-function updateCamera() {
-  const theta = home.theta - pointer.x * 26;
-  const phi = Math.max(70, Math.min(110, home.phi - pointer.y * 20));
-  viewer.setAttribute("camera-orbit", `${theta}deg ${phi}deg ${home.radius}`);
+function updateCardTilt() {
+  const frontYaw = -pointer.x * frontTilt.yaw;
+  const frontPitch = homePitch - pointer.y * frontTilt.pitch;
+  const rearYaw = frontYaw * 0.5;
+  const rearPitch = homePitch + (frontPitch - homePitch) * 0.5;
+
+  viewer.setAttribute("orientation", `0deg ${frontPitch}deg ${frontYaw}deg`);
+  rearCard?.setAttribute("orientation", `0deg ${rearPitch}deg ${rearYaw}deg`);
 }
 
 function moveWithPointer(event) {
@@ -17,7 +23,7 @@ function moveWithPointer(event) {
   const inside = event.clientX >= bounds.left && event.clientX <= bounds.right
     && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
   if (!inside) {
-    resetCamera();
+    resetCards();
     return;
   }
 
@@ -25,17 +31,17 @@ function moveWithPointer(event) {
     x: Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2)),
     y: Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - 0.5) * 2)),
   };
-  updateCamera();
+  updateCardTilt();
 }
 
-function resetCamera() {
+function resetCards() {
   if (pointer.x === 0 && pointer.y === 0) return;
   pointer = { x: 0, y: 0 };
-  updateCamera();
+  updateCardTilt();
 }
 
 window.addEventListener("pointermove", moveWithPointer, { passive: true, capture: true });
-stage.addEventListener("pointerleave", resetCamera, { passive: true });
+stage.addEventListener("pointerleave", resetCards, { passive: true });
 
 viewer.addEventListener("progress", (event) => {
   progressFill.style.width = `${Math.round(event.detail.totalProgress * 100)}%`;
@@ -44,7 +50,7 @@ viewer.addEventListener("progress", (event) => {
 viewer.addEventListener("load", () => {
   const center = viewer.getBoundingBoxCenter();
   viewer.setAttribute("camera-target", `${center.x.toFixed(4)}m ${center.y.toFixed(4)}m ${center.z.toFixed(4)}m`);
-  updateCamera();
+  updateCardTilt();
   progressFill.style.width = "100%";
   window.setTimeout(() => loadState?.setAttribute("hidden", ""), 350);
 });

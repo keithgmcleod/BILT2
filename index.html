@@ -15,7 +15,7 @@
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"
     ></script>
-    <script src="./app.js?v=11" defer></script>
+    <script src="./app.js?v=12" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -39,9 +39,10 @@
           <div class="viewer-stage">
             <model-viewer
               id="obsidian-model"
-              src="./obsidian_web.glb?v=7"
-              alt="The Obsidian card and its components, shown in a centered 3D view"
+              src="./obsidian_front.gltf?v=1"
+              alt="Two Obsidian cards, with the front and reverse sides visible in a centered 3D view"
               camera-orbit="0deg 90deg 110%"
+              orientation="0deg -15deg 0deg"
               interpolation-decay="60"
               camera-target="auto auto auto"
               field-of-view="28deg"
@@ -51,6 +52,11 @@
               tone-mapping="aces"
               loading="eager"
             >
+              <extra-model
+                id="rear-card"
+                src="./obsidian_back.gltf?v=1"
+                orientation="0deg -15deg 0deg"
+              ></extra-model>
               <div class="load-state" slot="poster">
                 <span class="loader-ring" aria-hidden="true"></span>
                 <span>Loading the model</span>
@@ -72,7 +78,7 @@
           The Obsidian assembly is presented as a high-detail 3D scene, composed for the web.
         </p>
         <div class="spec-grid" aria-label="Model specifications">
-          <div class="spec"><span class="spec-label">FORMAT</span><strong>GLB / glTF 2.0</strong></div>
+          <div class="spec"><span class="spec-label">FORMAT</span><strong>glTF 2.0</strong></div>
           <div class="spec"><span class="spec-label">SCENE PARTS</span><strong>12 objects</strong></div>
           <div class="spec"><span class="spec-label">GEOMETRY</span><strong>1,944,728 triangles</strong></div>
           <div class="spec"><span class="spec-label">DOWNLOAD</span><strong>23.4 MB</strong></div>
