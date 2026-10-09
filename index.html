@@ -8,7 +8,12 @@
     <title>OBSIDIAN — Interactive object study</title>
     <link rel="preconnect" href="https://ajax.googleapis.com" />
     <link rel="stylesheet" href="./styles.css?v=reflection-only" />
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
+    <script async src="https://ga.jspm.io/npm:es-module-shims@2.6.2/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.174.0/build/three.module.min.js"}}
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer-module.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects@1.5.0/dist/model-viewer-effects.min.js"></script>
     <script src="./app.js?v=31" defer></script>
   </head>
   <body>
@@ -44,6 +49,10 @@
               tone-mapping="aces"
               loading="eager"
             >
+              <effect-composer render-mode="quality" msaa="2">
+                <bloom-effect strength="0.28" threshold="0.78" radius="0.6" smoothing="0.08"></bloom-effect>
+                <color-grade-effect></color-grade-effect>
+              </effect-composer>
               <div class="load-state" slot="poster">
                 <span class="loader-ring" aria-hidden="true"></span>
                 <span>Loading the model</span>
