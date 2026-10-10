@@ -1,4 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+
+:root {
+  color-scheme: dark;
+  --white: #fff;
+  --black: #000;
+  --line: rgba(255, 255, 255, .22);
+  --mono: "DM Mono", "Courier New", monospace;
+  --sans: "Manrope", "Helvetica Neue", sans-serif;
+}
+
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--black); }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+button, a { color: var(--white); font: inherit; }
+a { text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+
+
+.topbar, .footer {
+  min-height: 72px;
+  padding: 0 5.4vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,4 +113,16 @@ h2 { margin: 0; max-width: 500px; font-size: clamp(30px, 4vw, 53px); line-height
 .footer a { transition: opacity 180ms ease; }
 
 
-
+@media (max-width: 760px) {
+  .hero { min-height: auto; grid-template-columns: 1fr; }
+  .hero-copy { max-width: none; padding: 58px 7vw 42px; }
+  .hero-copy .text-link { margin-top: 28px; }
+  h1 { margin-top: 22px; }
+  .viewer-shell, .viewer-stage, model-viewer { min-height: 72svh; height: 72svh; }
+  .details { column-gap: 5vw; }
+}
+@media (max-width: 600px) {
+  .topbar, .footer { min-height: 62px; padding: 0 22px; }
+  .top-link { font-size: 8px; }
+  .hero-copy { padding: 44px 22px 34px; }
+  h1 { font-size: clamp(54px, 15vw, 78px); }
