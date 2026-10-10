@@ -7,7 +7,7 @@
     <meta name="description" content="Explore the Obsidian card in an interactive 3D viewer." />
     <title>OBSIDIAN — Interactive object study</title>
     <link rel="preconnect" href="https://ajax.googleapis.com" />
-    <link rel="stylesheet" href="./styles.css?v=reflection-only" />
+    <link rel="stylesheet" href="./styles.css?v=no-divider-0edc6c3" />
     <script async src="https://ga.jspm.io/npm:es-module-shims@2.6.2/dist/es-module-shims.js"></script>
     <script type="importmap">
       {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.174.0/build/three.module.min.js"}}
@@ -34,56 +34,3 @@
         </div>
         <div class="viewer-shell">
           <div class="viewer-stage">
-            <model-viewer
-              id="obsidian-model"
-              style="transform: scale(0.65); transform-origin: center center;"
-              src="./obsidian_front.gltf?v=roughness-61062a9"
-              alt="Obsidian card in a centered 3D view"
-              camera-orbit="0deg 82deg 110%"
-              orientation="0deg -15deg -15deg"
-              interpolation-decay="60"
-              camera-target="0.0960m -0.0629m -0.0104m"
-              field-of-view="28deg"
-              environment-image="./HDR_Light_Studio_Free_HDRI_Design_07_down30_left60.hdr"
-              exposure="1.05"
-              shadow-intensity="1.1"
-              tone-mapping="aces"
-              loading="eager"
-            >
-              <effect-composer render-mode="quality" msaa="2">
-                <bloom-effect strength="0.28" threshold="0.78" radius="0.6" smoothing="0.08"></bloom-effect>
-                <color-grade-effect></color-grade-effect>
-              </effect-composer>
-              <div class="load-state" slot="poster">
-                <span class="loader-ring" aria-hidden="true"></span>
-                <span>Loading the model</span>
-              </div>
-              <div class="progress-track" slot="progress-bar" aria-hidden="true" style="display: none;">
-                <span class="progress-fill"></span>
-              </div>
-            </model-viewer>
-          </div>
-        </div>
-      </section>
-      <section class="details" id="details" aria-labelledby="details-title">
-        <div class="details-heading">
-          <p class="eyebrow">BUILT FOR THE WEB</p>
-          <h2 id="details-title">Made to be explored.</h2>
-        </div>
-        <p class="details-copy">
-          The Obsidian card is presented as a high-detail 3D model, composed for the web.
-        </p>
-        <div class="spec-grid" aria-label="Model specifications">
-          <div class="spec"><span class="spec-label">FORMAT</span><strong>glTF 2.0</strong></div>
-          <div class="spec"><span class="spec-label">SCENE PARTS</span><strong>12 objects</strong></div>
-          <div class="spec"><span class="spec-label">GEOMETRY</span><strong>1,944,728 triangles</strong></div>
-          <div class="spec"><span class="spec-label">DOWNLOAD</span><strong>23.4 MB</strong></div>
-        </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <span>OBSIDIAN / 3D OBJECT STUDY</span>
-      <a href="#top">Back to top ↑</a>
-    </footer>
-  </body>
-</html>
