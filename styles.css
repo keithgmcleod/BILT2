@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 
+
+
 :root {
   color-scheme: dark;
   --white: #fff;
@@ -9,6 +11,8 @@
   --mono: "DM Mono", "Courier New", monospace;
   --sans: "Manrope", "Helvetica Neue", sans-serif;
 }
+
+
 
 
 * { box-sizing: border-box; }
@@ -23,6 +27,8 @@ body {
 button, a { color: var(--white); font: inherit; }
 a { text-decoration: none; }
 a:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+
+
 
 
 .topbar, .footer {
@@ -43,6 +49,8 @@ a:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
 .top-link { font-size: 10px; transition: opacity 180ms ease; }
 .top-link span { margin-left: 6px; font-size: 14px; }
 .top-link:hover, .footer a:hover { opacity: .65; }
+
+
 
 
 .hero {
@@ -69,6 +77,8 @@ h1 { margin: 30px 0 22px -5px; font-size: clamp(52px, 6.5vw, 104px); line-height
 .text-link:hover span { transform: translateY(3px); }
 
 
+
+
 .viewer-shell { min-width: 0; min-height: calc(100svh - 72px); }
 .viewer-stage {
   position: relative;
@@ -78,6 +88,8 @@ h1 { margin: 30px 0 22px -5px; font-size: clamp(52px, 6.5vw, 104px); line-height
   overflow: hidden;
   background: #000;
 }
+
+
 
 
 model-viewer {
@@ -92,12 +104,17 @@ model-viewer {
   --progress-bar-color: #fff;
   --progress-mask: #000;
 }
+#obsidian-model {
+  -webkit-box-reflect: below -190px linear-gradient(to bottom, rgba(255,255,255,.22) 0%, rgba(255,255,255,.08) 45%, rgba(255,255,255,0) 100%);
+}
 model-viewer::part(default-progress-bar) { height: 2px; }
 .load-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; color: var(--white); font: 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .loader-ring { width: 23px; height: 23px; border: 1px solid rgba(255,255,255,.35); border-top-color: var(--white); border-radius: 50%; animation: spin .9s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .progress-track { height: 2px; width: 100%; background: transparent; position: absolute; left: 0; bottom: 0; }
 .progress-fill { display: block; width: 0; height: 100%; background: var(--white); transition: width 120ms ease; }
+
+
 
 
 .details { border-top: 0; padding: 74px 7vw 84px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 10vw; row-gap: 38px; }
@@ -113,16 +130,10 @@ h2 { margin: 0; max-width: 500px; font-size: clamp(30px, 4vw, 53px); line-height
 .footer a { transition: opacity 180ms ease; }
 
 
+
+
 @media (max-width: 760px) {
   .hero { min-height: auto; grid-template-columns: 1fr; }
   .hero-copy { max-width: none; padding: 58px 7vw 42px; }
   .hero-copy .text-link { margin-top: 28px; }
   h1 { margin-top: 22px; }
-  .viewer-shell, .viewer-stage, model-viewer { min-height: 72svh; height: 72svh; }
-  .details { column-gap: 5vw; }
-}
-@media (max-width: 600px) {
-  .topbar, .footer { min-height: 62px; padding: 0 22px; }
-  .top-link { font-size: 8px; }
-  .hero-copy { padding: 44px 22px 34px; }
-  h1 { font-size: clamp(54px, 15vw, 78px); }
