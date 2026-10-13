@@ -5,6 +5,9 @@ const loadState = document.querySelector(".load-state");
 const pageTitle = document.querySelector("#page-title");
 const detailsCopy = document.querySelector(".details-copy");
 const variantButtons = [...document.querySelectorAll("[data-card-variant]")];
+const specParts = document.querySelector("#spec-parts");
+const specGeometry = document.querySelector("#spec-geometry");
+const specDownload = document.querySelector("#spec-download");
 
 const frontTilt = { yaw: 15, pitch: 15 };
 let baseOrientation = { roll: 0, pitch: -15, yaw: -15 };
@@ -28,6 +31,9 @@ function selectCard(button) {
   viewer.setAttribute("src", src);
   pageTitle.textContent = title.toUpperCase();
   detailsCopy.textContent = title + " is presented as a high-detail 3D model, composed for the web.";
+  if (specParts && button.dataset.parts) specParts.textContent = button.dataset.parts;
+  if (specGeometry && button.dataset.triangles) specGeometry.textContent = button.dataset.triangles;
+  if (specDownload && button.dataset.size) specDownload.textContent = button.dataset.size;
 
   variantButtons.forEach((option) => {
     const selected = option === button;

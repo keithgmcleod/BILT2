@@ -14,7 +14,7 @@
     </script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer-module.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects@1.5.0/dist/model-viewer-effects.min.js"></script>
-    <script src="./app.js?v=bilt-card-selector-1" defer></script>
+    <script src="./app.js?v=blue-highres-1" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -34,17 +34,17 @@
           <nav class="card-selector" aria-label="Choose a BILT card">
             <p class="card-selector-label">SELECT A CARD</p>
             <div class="card-selector-options">
-              <button class="card-option" type="button" data-card-variant data-title="BILT Blue" data-alt="BILT Blue card" disabled>
+              <button class="card-option" type="button" data-card-variant data-title="BILT Blue" data-alt="BILT Blue card in a centered 3D view" data-src="./BILT_Blue_HighRes.glb?v=blue-highres-1" data-camera-target="auto auto auto" data-orientation="0deg -15deg -15deg" data-parts="3 objects" data-triangles="159,819 triangles" data-size="82.8 MB">
                 <span class="card-option-name">BILT Blue</span>
-                <span class="card-option-status">Coming soon</span>
+                <span class="card-option-status">View card</span>
               </button>
-              <button class="card-option" type="button" data-card-variant data-title="BILT Obsidian" data-alt="BILT Obsidian card" data-src="./obsidian_front.gltf?v=roughness-61062a9" data-camera-target="0.0960m -0.0629m -0.0104m" data-orientation="0deg -15deg -15deg" aria-pressed="true">
+              <button class="card-option" type="button" data-card-variant data-title="BILT Obsidian" data-alt="BILT Obsidian card" data-src="./obsidian_front.gltf?v=roughness-61062a9" data-camera-target="0.0960m -0.0629m -0.0104m" data-orientation="0deg -15deg -15deg" data-parts="12 objects" data-triangles="1,944,728 triangles" data-size="23.4 MB" aria-pressed="true">
                 <span class="card-option-name">BILT Obsidian</span>
                 <span class="card-option-status">Selected</span>
               </button>
               <button class="card-option" type="button" data-card-variant data-title="BILT Palladium" data-alt="BILT Palladium card" disabled>
                 <span class="card-option-name">BILT Palladium</span>
-                <span class="card-option-status">Coming soon</span>
+                <span class="card-option-status">View card</span>
               </button>
             </div>
           </nav>
@@ -92,9 +92,9 @@
         </p>
         <div class="spec-grid" aria-label="Model specifications">
           <div class="spec"><span class="spec-label">FORMAT</span><strong>glTF 2.0</strong></div>
-          <div class="spec"><span class="spec-label">SCENE PARTS</span><strong>12 objects</strong></div>
-          <div class="spec"><span class="spec-label">GEOMETRY</span><strong>1,944,728 triangles</strong></div>
-          <div class="spec"><span class="spec-label">DOWNLOAD</span><strong>23.4 MB</strong></div>
+          <div class="spec"><span class="spec-label">SCENE PARTS</span><strong id="spec-parts">12 objects</strong></div>
+          <div class="spec"><span class="spec-label">GEOMETRY</span><strong id="spec-geometry">1,944,728 triangles</strong></div>
+          <div class="spec"><span class="spec-label">DOWNLOAD</span><strong id="spec-download">23.4 MB</strong></div>
         </div>
       </section>
     </main>
