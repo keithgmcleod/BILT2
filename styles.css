@@ -64,6 +64,18 @@ h1 { margin: 30px 0 22px -5px; font-size: clamp(52px, 6.5vw, 104px); line-height
 .text-link span { transition: transform 180ms ease; }
 .text-link:hover span { transform: translateY(3px); }
 
+.card-selector { margin-top: 38px; max-width: 460px; }
+.card-selector-label { margin: 0 0 11px; color: var(--white); font: 9px var(--mono); letter-spacing: .07em; }
+.card-selector-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.card-option { min-width: 112px; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 11px 12px; border: 1px solid rgba(255,255,255,.32); border-radius: 2px; color: var(--white); background: transparent; text-align: left; cursor: pointer; transition: border-color 180ms ease, background 180ms ease, opacity 180ms ease; }
+.card-option[aria-pressed="true"] { border-color: var(--white); background: rgba(255,255,255,.09); }
+.card-option:not(:disabled):hover { border-color: var(--white); }
+.card-option:disabled { opacity: .48; cursor: not-allowed; }
+.card-option-name { font-size: 10px; font-weight: 600; white-space: nowrap; }
+.card-option-status { color: rgba(255,255,255,.68); font: 8px var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+.card-option[aria-pressed="true"] .card-option-status { color: var(--white); }
+
+
 .viewer-shell { min-width: 0; min-height: calc(100svh - 72px); }
 .viewer-stage {
   position: relative;
@@ -117,6 +129,10 @@ h2 { margin: 0; max-width: 500px; font-size: clamp(30px, 4vw, 53px); line-height
   .details { column-gap: 5vw; }
 }
 @media (max-width: 600px) {
+  .card-selector { margin-top: 28px; }
+  .card-selector-options { gap: 6px; }
+  .card-option { min-width: 0; flex: 1 1 30%; padding: 10px 8px; }
+  .card-option-name { font-size: 9px; }
   .topbar, .footer { min-height: 62px; padding: 0 22px; }
   .top-link { font-size: 8px; }
   .hero-copy { padding: 44px 22px 34px; }
