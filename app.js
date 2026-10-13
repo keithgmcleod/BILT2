@@ -2,12 +2,47 @@ const viewer = document.querySelector("#obsidian-model");
 const stage = document.querySelector(".viewer-stage");
 const progressFill = document.querySelector(".progress-fill");
 const loadState = document.querySelector(".load-state");
+const pageTitle = document.querySelector("#page-title");
+const detailsCopy = document.querySelector(".details-copy");
+const variantButtons = [...document.querySelectorAll("[data-card-variant]")];
 
 const frontTilt = { yaw: 15, pitch: 15 };
-const baseOrientation = { roll: 0, pitch: -15, yaw: -15 };
+let baseOrientation = { roll: 0, pitch: -15, yaw: -15 };
 let pointer = { x: 0, y: 0 };
 let currentPointer = { x: 0, y: 0 };
 let frame = 0;
+
+
+function selectCard(button) {
+  const src = button.dataset.src;
+  if (button.disabled || !src || button.getAttribute("aria-pressed") === "true") return;
+
+  const title = button.dataset.title || "BILT Card";
+  const orientationText = button.dataset.orientation || "0deg -15deg -15deg";
+  const angles = orientationText.trim().split(/\s+/).map((angle) => Number.parseFloat(angle) || 0);
+  baseOrientation = { roll: angles[0] ?? 0, pitch: angles[1] ?? -15, yaw: angles[2] ?? -15 };
+
+  viewer.setAttribute("alt", button.dataset.alt || title + " card");
+  viewer.setAttribute("camera-target", button.dataset.cameraTarget || "auto auto auto");
+  viewer.setAttribute("orientation", orientationText);
+  viewer.setAttribute("src", src);
+  pageTitle.textContent = title.toUpperCase();
+  detailsCopy.textContent = title + " is presented as a high-detail 3D model, composed for the web.";
+
+  variantButtons.forEach((option) => {
+    const selected = option === button;
+    option.setAttribute("aria-pressed", String(selected));
+    const status = option.querySelector(".card-option-status");
+    if (status) status.textContent = selected ? "Selected" : (option.disabled ? "Coming soon" : "View card");
+  });
+
+  pointer = { x: 0, y: 0 };
+  queueCardTilt();
+}
+
+variantButtons.forEach((button) => {
+  button.addEventListener("click", () => selectCard(button));
+});
 
 function updateCardTilt() {
   currentPointer.x += (pointer.x - currentPointer.x) * 0.1;
